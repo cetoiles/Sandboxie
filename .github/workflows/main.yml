@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   push:
-    branches: [master, experimental]
+    branches: [no-certificate, experimental]
     paths-ignore:
       # Case-sensitive paths to ignore on push events
       - '.editorconfig'
@@ -36,7 +36,7 @@ on:
       - '**/AUTHORS'
       - '**/COPYING'
   pull_request:
-    branches: [master, experimental]
+    branches: [no-certificate, experimental]
     paths-ignore:
       # Case-sensitive paths to ignore on pull events
       - '.editorconfig'
@@ -179,7 +179,7 @@ jobs:
         run: Installer\get_assets.cmd
 
       - name: Upload installer assets
-        #if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        #if: github.ref == 'refs/heads/no-certificate' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v6.0.0
         with:
           name: Assets
@@ -188,7 +188,7 @@ jobs:
           retention-days: 60
 
       - name: Upload Sandboxie x64
-        #if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        #if: github.ref == 'refs/heads/no-certificate' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v6.0.0
         with:
           name: Sandboxie_x64
@@ -299,7 +299,7 @@ jobs:
         run: Installer\copy_build.cmd ARM64 build_qt6
 
       - name: Upload Sandboxie ARM64
-        #if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        #if: github.ref == 'refs/heads/no-certificate' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v6.0.0
         with:
           name: Sandboxie_ARM64
